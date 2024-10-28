@@ -1,0 +1,27 @@
+.star{
+    position: absolute;
+    display: block;
+    top: var(--pos-y);
+    left: var(--pos-x);
+    opacity: 0;
+    z-index: 1;
+    animation: falling-star 5s linear;
+}
+
+.star::before{
+    content: "⭐";
+    font-size: 1em;
+}
+
+@keyframes falling-star {
+    0%{
+        transform: 0;
+    }
+    30%{
+        opacity: .8;
+    }
+    to{
+        transform: translate(0,8em) rotate(180deg);
+        opacity: 0;
+    }
+}

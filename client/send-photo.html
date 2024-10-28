@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FotoWojtek</title>
+    <link rel="stylesheet" href="/styles/style.css">
+    <link rel="stylesheet" href="/styles/stars.css">
+    <link rel="stylesheet" href="/styles/sending.css">
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script src="scripts/star-sprawner.js"></script>
+    <script src="scripts/upload.js"></script>
+</head>
+<body>
+    <div >
+        <h1 class="title">Don't be shy, send us more 😏</h1>
+        <div id="progress-bar" class="hidden" style="--progress:0%">0%</div>
+        <h3 id="thanks" class="hidden">Zdjęcie zostało dodane do kolejki, niedługo się pojawi. Dziękujemy 😃</h3>
+        <button id="upload" onclick="uploadImg()" accept="image/*">Dodaj swoje zdjęcie</button>
+    </div>
+</body>
+</html>

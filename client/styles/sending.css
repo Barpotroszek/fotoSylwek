@@ -1,0 +1,47 @@
+body {
+    font-size: 1.5em;
+    padding: 1em;
+    overflow: hidden;
+    height: 100vh;
+}
+
+*{
+    text-align: center;
+}
+
+button {
+    margin: 0 auto;
+    display: block;
+    font-size: inherit;
+    padding: .3em;
+    border-radius: .5em;
+    width:  max-content;
+    background-color: rgb(107, 107, 107);
+    border:2px solid white;
+    color: white;
+}
+
+#progress-bar {
+    position: relative;
+    display: flexbox;
+    border: .1em solid white;
+    border-radius: .2em;
+    width: 90%;
+    min-height: 1em;
+    margin: .5em auto;
+}
+
+
+#progress-bar::after {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: var(--progress);
+    height: 100%;
+    background: linear-gradient(0.05turn, #d45d5d, #585fb3);
+    background-blend-mode: multiply;
+    transition: all .2s;
+}

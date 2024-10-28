@@ -1,0 +1,9 @@
+node_modules/
+*.jpg
+*.JPG
+*.PNG
+*.png
+*.JPEG
+*.jpeg
+imgs/*/
+imgs/files.txt
