@@ -1,0 +1,47 @@
+#panel>div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1em;
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+#panel>div>div {
+    display: grid;
+    margin: 1rem 0;
+    width: 100%;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-content: center;
+    gap: .5em;
+    /* flex-direction: column; */
+}
+
+#panel img {
+    min-height: 8em;
+    max-width: 13em;
+    max-height: 10em;
+    margin: 0 auto;
+    transition: transform .1s;
+}
+
+#panel img:hover {
+    transform: scale(1.2);
+}
+
+.delete {
+    width: 100%;
+    background-color: rgb(207, 0, 0);
+    cursor: pointer;
+}
+
+.delete:hover {
+    background-color: rgb(160, 0, 0) !important;
+}
+
+.delete::after {
+    content: "Usuń";
+}

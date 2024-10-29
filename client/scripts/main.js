@@ -1,27 +1,28 @@
 const FILES = new Array();
 const socket = io();
 
-const prompt_duration = 7000
+const prompt_duration = 7000;
 const cursor = {
   limit: FILES.length,
   current: Math.floor((Math.random() * 100) % 50),
   timeout: 7000,
 };
 
-fetch("/imgs/files.txt").then((res) => {
-  res.text().then((t) => {
-    t.split("\n").forEach((f) => FILES.push(f));
-    cursor.limit = FILES.length;
+const updateFilesList = () => {
+  fetch("/imgs/files.txt").then((res) => {
+    res.text().then((t) => {
+      t.split("\n").forEach((f) => FILES.push(f));
+      cursor.limit = FILES.length;
+    });
   });
-});
+};
 
-function alert(msg){
-  const prompt = document.createElement("div")
+function alert(msg) {
+  const prompt = document.createElement("div");
   prompt.classList.add("prompt");
-  prompt.style = "--duration: " + prompt_duration/1000 + "s";
+  prompt.style = "--duration: " + prompt_duration / 1000 + "s";
   prompt.textContent = msg;
   document.body.append(prompt);
-
 }
 
 function uploadNextPhoto() {
@@ -52,3 +53,12 @@ socket.on("new-image", (filename) => {
   FILES.push(filename);
   cursor.limit = FILES.length;
 });
+
+socket.on("update-files-list", (x) => {
+  console.log("Deleting: ", x)
+  alert("Biblioteka zaktualizowana 🙄")
+  FILES.splice(x, 1);
+  cursor.limit = FILES.length;
+});
+
+updateFilesList();

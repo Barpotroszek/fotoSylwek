@@ -9,17 +9,6 @@ body {
     text-align: center;
 }
 
-button {
-    margin: 0 auto;
-    display: block;
-    font-size: inherit;
-    padding: .3em;
-    border-radius: .5em;
-    width:  max-content;
-    background-color: rgb(107, 107, 107);
-    border:2px solid white;
-    color: white;
-}
 
 #progress-bar {
     position: relative;

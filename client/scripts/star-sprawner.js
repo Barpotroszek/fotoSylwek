@@ -1,6 +1,6 @@
 function spawnStar() {
-  const MAX_X = window.outerWidth,
-   MAX_Y = window.outerHeight;
+  const MAX_X = window.innerWidth,
+   MAX_Y = window.innerHeight;
 
   const star = document.createElement("span");
   star.setAttribute("class", "star");

@@ -1,5 +1,6 @@
 html{
-    background-color: #202020;
+    --bg-color: #202020;
+    background-color: var(--bg-color);
     height: 100vh;
     box-sizing: border-box;
     overflow: hidden;
@@ -26,6 +27,12 @@ body{
 
 body>*{
     z-index: 2;
+}
+
+.grid{
+    display: grid;
+    justify-content: center;
+    align-items: center;
 }
 
 .picture
@@ -56,4 +63,32 @@ body>*{
     max-height: 80vh;
     margin: 0;
     padding: 1em;
+}
+
+.no-transparent{
+    background-color: var(--bg-color);
+}
+
+.border-white{
+    border:2px solid white;
+    border-radius: .5em;
+
+}
+
+button {
+    margin: 0 auto;
+    display: block;
+    font-size: inherit;
+    padding: .3em;
+    width:  max-content;
+    background-color: rgb(107, 107, 107);
+    color: white;
+}
+
+#container, #panel{
+    padding: 1em;
+}
+
+#container > h1{
+    margin-top: 0;
 }

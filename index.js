@@ -6,6 +6,8 @@ const path = require("path");
 const { Server } = require("socket.io");
 const fs = require("fs");
 
+const IMGS_FILE_PATH =path.join(__dirname, "imgs", "files.txt")
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "imgs"); // Specify the upload directory
@@ -25,7 +27,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
   console.log("PHOTO!!!");
   if (req.file) {
     const name = req.file.filename;
-    fs.appendFile("imgs/files.txt", "\n" + name, () => {});
+    fs.appendFile(IMGS_FILE_PATH, "\n" + name, () => {});
     res.send(`File received (I hope)`);
     io.emit("new-image", name);
   }
@@ -33,6 +35,10 @@ app.post("/upload", upload.single("file"), (req, res) => {
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "client", "index.html"));
+});
+
+app.get("/control-panel", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "control-panel.html"));
 });
 
 app.get("/upload-photo", (req, res) => {
@@ -46,8 +52,18 @@ app.use(
 );
 app.use(express.static("client"));
 
-io.on("connection", (socket) => {
+io.on("connection", async (socket) => {
   console.log("New socket connected!");
+  socket.on("delete", (name)=>{
+    console.log("Deleting: ", name)
+    const dt = fs.readFileSync(IMGS_FILE_PATH).toString();
+    let r = dt.split('\n'),
+    x = r.findIndex(f=>name==f)
+    r.splice(x, 1);
+    r = r.join('\n')
+    fs.writeFile(IMGS_FILE_PATH, r,()=>{})
+    io.emit("update-files-list", x)
+  })
 });
 
 server.listen(3000, () => {
